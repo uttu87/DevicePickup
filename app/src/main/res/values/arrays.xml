@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="reason_items">
+        <item>@string/missed_pickup_reason_0</item>
+        <item>@string/missed_pickup_reason_1</item>
+        <item>@string/missed_pickup_reason_2</item>
+        <item>@string/missed_pickup_reason_3</item>
+        <item>@string/missed_pickup_reason_4</item>
+        <item>@string/missed_pickup_reason_5</item>
+        <item>@string/missed_pickup_reason_6</item>
+        <item>@string/missed_pickup_reason_7</item>
+        <item>@string/missed_pickup_reason_8</item>
+    </string-array>
+</resources>

@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.ecoatm.devicepickup.viewmodel.DevicePickupViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/layout_margin"
+        android:orientation="vertical"
+        tools:context=".view.DevicePickupFragment">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/eco_atm_device_pickup"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvScanOrEnterQRCode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="44dp"
+            android:text="@string/scan_or_enter_kiosk_qr_code"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <com.ecoatm.devicepickup.view.ExpandableLayout
+            android:id="@+id/scanOrEnterQRCodeContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="vertical"
+            app:el_duration="@integer/expand_duration"
+            app:el_expanded="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <EditText
+                    android:id="@+id/kioskQRCodeEditText"
+                    style="@style/InputTextStyle"
+                    android:drawableRight="@drawable/ic_qr_code_scanner"
+                    android:hint="@string/kiosk_qr_code"
+                    android:text="@{viewModel.kioskQRCode}"
+                    android:inputType="none" />
+
+                <Button
+                    android:id="@+id/continueButton"
+                    style="@style/AppButtonStyle"
+                    android:layout_gravity="end"
+                    android:layout_marginTop="16dp"
+                    android:enabled="@{viewModel.btnContinueEnable}"
+                    android:onClick="@{() -> viewModel.btnContinuePressed()}"
+                    android:text="@string/continue_text" />
+            </LinearLayout>
+        </com.ecoatm.devicepickup.view.ExpandableLayout>
+
+        <com.google.android.material.divider.MaterialDivider
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="16dp" />
+
+        <TextView
+            android:id="@+id/tvNotMerchandised"
+            style="@style/LabelTextStyle"
+            android:layout_width="match_parent"
+            android:layout_marginTop="16dp"
+            android:text="@string/not_merchandised" />
+
+        <com.ecoatm.devicepickup.view.ExpandableLayout
+            android:id="@+id/notMerchandisedContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="16dp"
+            android:orientation="vertical"
+            app:el_duration="@integer/expand_duration"
+            app:el_expanded="false">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/LabelTextStyle"
+                        android:text="@string/kiosk_id" />
+
+                    <EditText
+                        android:id="@+id/kioskIdEditText"
+                        style="@style/InputTextStyle"
+                        android:imeOptions="actionDone"
+                        android:layout_marginStart="8dp" />
+                </LinearLayout>
+
+                <TextView
+                    style="@style/LabelTextStyle"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/missed_pickup_reason" />
+
+                <Spinner
+                    android:id="@+id/missedPickupReasonMenu"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/input_text_height"
+                    android:layout_marginTop="8dp"
+                    android:textSize="18sp"
+                    android:background="@drawable/spinner_background">
+
+                </Spinner>
+
+                <TextView
+                    style="@style/LabelTextStyle"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/estimated_pickup_date" />
+
+                <TextView
+                    android:id="@+id/estimatedPickupDate"
+                    style="@style/InputTextStyle"
+                    android:layout_marginTop="8dp"
+                    android:drawableRight="@drawable/ic_date_picker"
+                    android:inputType="datetime" />
+
+                <Button
+                    android:id="@+id/submitButton"
+                    style="@style/AppButtonStyle"
+                    android:layout_gravity="end"
+                    android:layout_marginTop="16dp"
+                    android:enabled="@{viewModel.btnSubmitEnable}"
+                    android:onClick="@{() -> viewModel.submit()}"
+                    android:text="@string/submit_and_close" />
+            </LinearLayout>
+        </com.ecoatm.devicepickup.view.ExpandableLayout>
+
+    </LinearLayout>
+</layout>
